@@ -4,16 +4,14 @@ declare(strict_types=1);
 
 namespace App\UserInterface;
 
-use App\Application\ApiClient\Exception\InvalidApiResponse;
 use App\Application\BikerService;
 use App\Application\CityBikeService;
-use App\Application\FileParser\Exception\FileParserFactoryException;
 
 class CityBikeController
 {
     private const NETWORK = 'bycyklen';
 
-    public function execute(): void
+    public function getClosestStationsForBikersAction(): void
     {
         // Missing dependency injection container
         $bikerSrv = new BikerService();
@@ -30,6 +28,8 @@ class CityBikeController
 
            if (!$bikerClosesStationDto) {
                echo(json_encode('Could not find closest station'));
+
+               continue;
            }
 
            echo($bikerClosesStationDto->toString());

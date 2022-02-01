@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Application;
 
-use App\Application\ApiClient\Exception\InvalidApiResponse;
 use App\Application\DistanceCalculator\DistanceCalculator;
 use App\Dto\BikerClosestStationDto;
 use App\Entity\Biker;
