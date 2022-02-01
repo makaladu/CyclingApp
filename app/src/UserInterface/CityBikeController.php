@@ -19,22 +19,20 @@ class CityBikeController
         $bikerSrv = new BikerService();
         $cityBikeService = new CityBikeService();
 
-        try {
-            $bikers = $bikerSrv->getBikersFromStorage();
-        } catch (FileParserFactoryException $e) {
-            echo json_encode($e->getMessage());
+        $bikers = $bikerSrv->getBikersFromStorage();
 
-            return;
+        if (!$bikers->valid()) {
+            echo(json_encode('Could not fetch bikers'));
         }
 
-        try {
-            foreach ($bikers as $biker) {
-               echo (json_encode($cityBikeService->findClosestStationForBiker($biker, self::NETWORK)));
-            }
-        } catch (InvalidApiResponse $e) {
-            echo json_encode($e->getMessage());
+        foreach ($bikers as $biker) {
+           $bikerClosesStationDto = $cityBikeService->findClosestStationForBiker($biker, self::NETWORK);
 
-            return;
+           if (!$bikerClosesStationDto) {
+               echo(json_encode('Could not find closest station'));
+           }
+
+           echo($bikerClosesStationDto->toString());
         }
     }
 }

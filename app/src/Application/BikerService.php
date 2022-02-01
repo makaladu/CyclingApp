@@ -12,9 +12,6 @@ use Generator;
 
 class BikerService
 {
-    /**
-     * @throws FileParserFactoryException
-     */
     public function getBikersFromStorage(): Generator
     {
         $filePath = '../src/Infrastructure/Storage/bikers.csv';
@@ -22,7 +19,13 @@ class BikerService
         $pathParts = pathinfo($filePath);
         $fileExtension = $pathParts['extension'];
 
-        $fileParser = FileParserFactory::createFromFileFormat(FileTypes::tryFrom($fileExtension));
+        try {
+            $fileParser = FileParserFactory::createFromFileFormat(FileTypes::tryFrom($fileExtension));
+        } catch (FileParserFactoryException) {
+            //Log exception
+            return null;
+        }
+
         $fileContent = $fileParser->parseToArray($filePath);
 
         foreach ($fileContent as $item) {

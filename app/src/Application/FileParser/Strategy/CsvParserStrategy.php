@@ -12,14 +12,7 @@ class CsvParserStrategy implements FileParserStrategyInterface
     {
         $csv = Reader::createFromPath($filePath);
         $csv->setHeaderOffset(0);
-        $csv->setDelimiter(',');
 
-        $rows = [];
-
-        foreach ($csv->getRecords() as $row) {
-            $rows[] = $row;
-        }
-
-        return $rows;
+        return iterator_to_array($csv->getRecords());
     }
 }

@@ -10,16 +10,5 @@ class Biker
         public readonly float $latitude,
         public readonly float $longitude,
         public readonly int $count,
-        private ?BikeStation $closestStation = null
     ) {}
-
-    public function getClosestStation(): ?BikeStation
-    {
-        return $this->closestStation;
-    }
-
-    public function setClosestStation(?BikeStation $closestStation): void
-    {
-        $this->closestStation = $closestStation;
-    }
 }

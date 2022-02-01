@@ -15,16 +15,18 @@ class BikeStationsService
         private CityBikeApiClient $cityBikeApiClient = new CityBikeApiClient(),
     ) {}
 
-    /**
-     * @throws InvalidApiResponse
-     */
     public function getAvailableBikeStations(string $network): Generator
     {
-        $cityBikeApiData = $this->cityBikeApiClient->getNetworkData($network);
+        try {
+            $cityBikeApiData = $this->cityBikeApiClient->getNetworkData($network);
+        } catch (InvalidApiResponse) {
+            //Log exception
+            return null;
+        }
 
         foreach ($cityBikeApiData['network']['stations'] as $stationData) {
             yield new BikeStation(
-                $stationData['extra']['address'],
+                (string)$stationData['extra']['address'],
                 (float)$stationData['latitude'],
                 (float)$stationData['longitude'],
                 (int)$stationData['free_bikes'],

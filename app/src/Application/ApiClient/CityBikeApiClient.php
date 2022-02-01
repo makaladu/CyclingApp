@@ -8,7 +8,7 @@ use App\Application\ApiClient\Exception\InvalidApiResponse;
 use App\Application\ApiClient\Validation\ResponseValidator;
 use GuzzleHttp\Exception\GuzzleException;
 
-final class CityBikeApiClient extends AbstractApiClient
+class CityBikeApiClient extends AbstractApiClient
 {
     private const API_CALL_RETRY_MAX = 1;
     private const API_ENDPOINT_NETWORK_DATA = 'http://api.citybik.es/:VERSION:/networks/:NETWORK_ID:';

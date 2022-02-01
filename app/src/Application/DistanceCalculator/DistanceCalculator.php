@@ -17,9 +17,7 @@ class DistanceCalculator
         $dLat = deg2rad($latitudeB - $latitudeA);
         $dLon = deg2rad($longitudeB - $longitudeA);
 
-        $a = sin($dLat / 2) * sin($dLat / 2) + cos(deg2rad($latitudeA)) * cos(deg2rad($latitudeB)) * sin(
-                $dLon / 2
-            ) * sin($dLon / 2);
+        $a = sin($dLat / 2) * sin($dLat / 2) + cos(deg2rad($latitudeA)) * cos(deg2rad($latitudeB)) * sin($dLon / 2) * sin($dLon / 2);
         $c = 2 * asin(sqrt($a));
 
         return self::EARTH_RADIUS * $c;

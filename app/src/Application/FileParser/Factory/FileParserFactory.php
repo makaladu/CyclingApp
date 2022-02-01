@@ -11,6 +11,9 @@ use App\Application\FileParser\Strategy\CsvParserStrategy;
 
 class FileParserFactory
 {
+    /**
+     * @throws FileParserFactoryException
+     */
     public static function createFromFileFormat(FileTypes $fileType): FileParser
     {
         return match ($fileType) {

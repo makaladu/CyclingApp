@@ -13,17 +13,19 @@ class CityBikeService
 {
     public function __construct(
         private BikeStationsService $bikeStationsService = new BikeStationsService(),
-        private DistanceCalculator $distanceCalculator = new DistanceCalculator()
+        private DistanceCalculator $distanceCalculator = new DistanceCalculator(),
     ) {}
 
-    /**
-     * @throws InvalidApiResponse
-     */
-    public function findClosestStationForBiker(Biker $biker, string $network): BikerClosestStationDto
+    public function findClosestStationForBiker(Biker $biker, string $network): ?BikerClosestStationDto
     {
-        // List of stations should be cached
+        // List of stations should be cached to avoid multiple API calls
         $bikeStationsCollection =
             $this->bikeStationsService->getAvailableBikeStations($network);
+
+        if (!$bikeStationsCollection->valid()) {
+            return null;
+        }
+
         $shortestDistance = null;
         $closesStation = null;
 
