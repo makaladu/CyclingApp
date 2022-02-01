@@ -1,4 +1,4 @@
-# Instalation
+# Installation
 
  - clone repository 
 
