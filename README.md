@@ -1,9 +1,8 @@
 # Installation
 
- - clone repository 
+ - clone repository
+ - `composer install` from /CyclingApp/app directory
+ - `docker-compose up` from /CyclingApp
 
- - cd to /CyclingApp
-
- - docker-compose up
-
- - composer install
+# Run
+ - http://localhost:8080/
