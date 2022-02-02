@@ -22,20 +22,15 @@ class BikerService
 
         try {
             $fileParser = FileParserFactory::createFromFileFormat(FileTypes::tryFrom($fileExtension));
-        } catch (FileParserFactoryException) {
-            //Log exception
-            return null;
-        }
-
-        try {
             $fileContent = $fileParser->parseToArray($filePath);
-        } catch (FileParserException) {
+        } catch (FileParserFactoryException | FileParserException) {
             //Log exception
             return null;
         }
 
         foreach ($fileContent as $item) {
             if (!$this->isValidateBikerData($item)) {
+                //Maybe introduce validation exception that can be shown to user if needed
                 continue;
             }
 
