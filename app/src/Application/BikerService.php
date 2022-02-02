@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Application;
 
 use App\Application\FileParser\Enum\FileTypes;
+use App\Application\FileParser\Exception\FileParserException;
 use App\Application\FileParser\Exception\FileParserFactoryException;
 use App\Application\FileParser\Factory\FileParserFactory;
 use App\Entity\Biker;
@@ -26,14 +27,36 @@ class BikerService
             return null;
         }
 
-        $fileContent = $fileParser->parseToArray($filePath);
+        try {
+            $fileContent = $fileParser->parseToArray($filePath);
+        } catch (FileParserException) {
+            //Log exception
+            return null;
+        }
 
         foreach ($fileContent as $item) {
+            if (!$this->isValidateBikerData($item)) {
+                continue;
+            }
+
             yield new Biker(
                 (float) $item['latitude'],
                 (float) $item['longitude'],
                 (int) $item['count'],
             );
         }
+    }
+
+    private function isValidateBikerData(array $bikerData): bool
+    {
+        if (
+            !isset($bikerData['latitude']) ||
+            !isset($bikerData['longitude']) ||
+            !isset($bikerData['count'])
+        ) {
+            return false;
+        }
+
+        return true;
     }
 }

@@ -13,7 +13,6 @@
       <excludeFolder url="file://$MODULE_DIR$/app/vendor/psr/http-message" />
       <excludeFolder url="file://$MODULE_DIR$/app/vendor/psr/http-factory" />
       <excludeFolder url="file://$MODULE_DIR$/app/vendor/composer" />
-      <excludeFolder url="file://$MODULE_DIR$/app/vendor/justinrainbow/json-schema" />
       <excludeFolder url="file://$MODULE_DIR$/app/vendor/symfony/polyfill-ctype" />
       <excludeFolder url="file://$MODULE_DIR$/app/vendor/sebastian/code-unit-reverse-lookup" />
       <excludeFolder url="file://$MODULE_DIR$/app/vendor/sebastian/comparator" />

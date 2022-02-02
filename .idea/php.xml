@@ -13,7 +13,6 @@
       <path value="$PROJECT_DIR$/app/vendor/psr/http-message" />
       <path value="$PROJECT_DIR$/app/vendor/psr/http-factory" />
       <path value="$PROJECT_DIR$/app/vendor/composer" />
-      <path value="$PROJECT_DIR$/app/vendor/justinrainbow/json-schema" />
       <path value="$PROJECT_DIR$/app/vendor/symfony/polyfill-ctype" />
       <path value="$PROJECT_DIR$/app/vendor/sebastian/code-unit-reverse-lookup" />
       <path value="$PROJECT_DIR$/app/vendor/sebastian/comparator" />
